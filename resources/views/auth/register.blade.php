@@ -12,10 +12,14 @@
 
             <div class="card-body">
 
-                <form>
+    <p class="text-muted">
+        Create your MovieHub account
+    </p>
 
-                    <div class="mb-3">
-                        <label>Nama</label>
+    <form>
+
+        <div class="mb-3">
+            <label>Nama</label>
                         <input
                             type="text"
                             class="form-control"
