@@ -43,3 +43,7 @@
 
 </body>
 </html>
+
+<a href="/favorites" class="btn btn-info">
+    Favorites
+</a>
