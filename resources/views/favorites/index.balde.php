@@ -2,13 +2,17 @@
 
 @section('content')
 
-<h2 class="mb-4">
+<h2 class="mb-3">
     Favorite Movies
 </h2>
 
-<table class="table table-bordered">
+<p class="text-muted">
+    List of movies saved by user
+</p>
 
-    <thead>
+<table class="table table-bordered table-hover">
+
+    <thead class="table-dark">
         <tr>
             <th>No</th>
             <th>Title</th>
@@ -24,10 +28,12 @@
             <td>Avengers Endgame</td>
             <td>2019</td>
             <td>
+
                 <button
                     class="btn btn-danger btn-sm">
                     Delete
                 </button>
+
             </td>
         </tr>
 
