@@ -5,10 +5,10 @@ namespace App\Services;
 use App\Models\Favorite;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Http;
-
 use App\Contracts\MovieContract;
 
-class MovieService implements MovieContract{
+class MovieService implements MovieContract
+{
     protected $apiKey;
 
     public function __construct()
