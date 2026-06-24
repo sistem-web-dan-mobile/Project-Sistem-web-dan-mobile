@@ -12,3 +12,7 @@ if (!$conn) {
         "message" => "Koneksi gagal: " . mysqli_connect_error()
     ]));
 }
+
+header("Access-Control-Allow-Origin: *");
+header("Content-Type: application/json");
+?>
