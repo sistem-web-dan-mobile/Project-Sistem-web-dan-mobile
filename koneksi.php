@@ -1,13 +1,14 @@
 <?php
 $host = "localhost";
-$user = "root";
+$username = "root";
 $password = "";
-$database = "project_db";
+$database = "moviehub";
 
-$conn = mysqli_connect($host, $user, $password, $database);
+$conn = mysqli_connect($host, $username, $password, $database);
 
 if (!$conn) {
-    die("Koneksi gagal: " . mysqli_connect_error());
+    die(json_encode([
+        "status" => "error",
+        "message" => "Koneksi gagal: " . mysqli_connect_error()
+    ]));
 }
-?>
-// update backend
