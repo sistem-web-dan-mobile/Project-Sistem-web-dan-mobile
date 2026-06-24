@@ -1,58 +1,75 @@
-```html
-<!DOCTYPE html>
-<html>
-<body>
+@extends('layouts.app')
 
-<h1>Dashboard MovieHub</h1>
+@section('content')
 
-<input id="title" placeholder="Search movie">
-<button onclick="searchMovie()">Search</button>
-<button onclick="logout()">Logout</button>
+<div class="card">
+    <h1>Dashboard</h1>
+    <br>
 
-<div id="result"></div>
+    <input id="title" placeholder="Search movie...">
+    <button onclick="searchMovie()">Search</button>
+    <button onclick="logout()">Logout</button>
+
+    <div id="result" class="movie-grid"></div>
+</div>
 
 <script>
 const token = localStorage.getItem('token');
 
-if (!token) {
-    window.location.href = '/login';
+if(!token){
+    window.location='/login';
 }
 
-async function searchMovie() {
-    let title = document.getElementById('title').value;
+async function searchMovie(){
+    let title=document.getElementById('title').value;
 
-    let response = await fetch('/api/v1/movies/search?title=' + title, {
-        headers: {
-            'Authorization': 'Bearer ' + token,
-            'Accept': 'application/json'
+    let response=await fetch('/api/v1/movies/search?title='+title,{
+        headers:{
+            Authorization:'Bearer '+token,
+            Accept:'application/json'
         }
     });
 
-    let data = await response.json();
-    let result = document.getElementById('result');
-    result.innerHTML = "";
+    let data=await response.json();
+    console.log(data);
 
-    if (data.data && data.data.Search) {
-        data.data.Search.forEach(movie => {
+    let result=document.getElementById('result');
+    result.innerHTML='';
+
+    if(data.data.Search){
+        data.data.Search.forEach(movie=>{
             result.innerHTML += `
-                <div style="border:1px solid black;margin:20px;padding:20px">
-                    <img src="${movie.Poster}" width="120">
+              <div class="movie-card">
+                    <img src="${movie.Poster}">
                     <h3>${movie.Title}</h3>
-                    <p>${movie.Year}</p>
+                    <p>Year: ${movie.Year}</p>
+                    <p>Type: ${movie.Type}</p>
+                    <p>ID: ${movie.imdbID}</p>
+
                     <button onclick="saveFavorite(
                         '${movie.imdbID}',
-                        '${movie.Title}',
+                        '${movie.Title.replace(/'/g, "\\'")}',
                         '${movie.Poster}',
                         '${movie.Year}'
-                    )">Favorite</button>
+                    )">
+                       ❤️ Add Favorite
+                    </button>
                 </div>
-            `;
+        `;
         });
     }
 }
 
 async function saveFavorite(imdb, title, poster, year) {
-    await fetch('/api/v1/favorites', {
+    const token = localStorage.getItem('token');
+
+    if (!token) {
+        alert("Silakan login dulu");
+        window.location.href = '/login';
+        return;
+    }
+
+    let response = await fetch('/api/v1/favorites', {
         method: 'POST',
         headers: {
             'Authorization': 'Bearer ' + token,
@@ -67,23 +84,28 @@ async function saveFavorite(imdb, title, poster, year) {
         })
     });
 
-    alert("Added to favorite");
+    let data = await response.json();
+
+    console.log(data);
+
+    if (response.ok) {
+        alert("Movie berhasil ditambahkan ke favorites");
+    } else {
+        alert("Gagal: " + JSON.stringify(data));
+    }
 }
 
-async function logout() {
-    await fetch('/api/v1/logout', {
-        method: 'POST',
-        headers: {
-            'Authorization': 'Bearer ' + token,
-            'Accept': 'application/json'
+async function logout(){
+    await fetch('/api/v1/logout',{
+        method:'POST',
+        headers:{
+            Authorization:'Bearer '+token
         }
     });
 
     localStorage.removeItem('token');
-    window.location.href = '/login';
+    window.location='/login';
 }
 </script>
 
-</body>
-</html>
-```
+@endsection

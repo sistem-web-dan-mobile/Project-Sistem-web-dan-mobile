@@ -1,12 +1,15 @@
-<!DOCTYPE html>
-<html>
-<body>
-<h2>Register</h2>
+@extends('layouts.app')
 
-<input id="name" placeholder="Name">
-<input id="email" placeholder="Email">
-<input id="password" type="password" placeholder="Password">
-<button onclick="register()">Register</button>
+@section('content')
+<div class="card" style="max-width:500px;margin:auto;">
+    <h2>Register</h2>
+
+    <input id="name" placeholder="Name">
+    <input id="email" placeholder="Email">
+    <input id="password" type="password" placeholder="Password">
+
+    <button onclick="register()">Register</button>
+</div>
 
 <script>
 async function register(){
@@ -24,14 +27,14 @@ async function register(){
     });
 
     let data = await response.json();
+    console.log(data);
 
     if(response.ok){
-        alert("Register berhasil, silakan login");
+        alert("Register berhasil");
         window.location='/login';
-    }else{
+    } else {
         alert(JSON.stringify(data));
     }
 }
 </script>
-</body>
-</html>
+@endsection

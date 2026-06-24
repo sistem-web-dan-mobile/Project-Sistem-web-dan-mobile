@@ -1,12 +1,14 @@
-<!DOCTYPE html>
-<html>
-<body>
-<h2>Login</h2>
+@extends('layouts.app')
 
-<input id="email" placeholder="Email">
-<input id="password" type="password">
+@section('content')
+<div class="card" style="max-width:500px;margin:auto;">
+    <h2>Login</h2>
 
-<button onclick="login()">Login</button>
+    <input id="email" placeholder="Email">
+    <input id="password" type="password">
+
+    <button onclick="login()">Login</button>
+</div>
 
 <script>
 async function login(){
@@ -23,15 +25,14 @@ async function login(){
     });
 
     let data = await response.json();
+    console.log(data);
 
     if(response.ok){
         localStorage.setItem('token', data.token);
         window.location='/dashboard';
-   }else{
-    console.log(data);
-    alert(JSON.stringify(data));
-   }
+    }else{
+        alert(JSON.stringify(data));
+    }
 }
 </script>
-</body>
-</html>
+@endsection
