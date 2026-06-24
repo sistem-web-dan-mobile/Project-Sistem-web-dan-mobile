@@ -1,51 +1,37 @@
 <!DOCTYPE html>
 <html>
-<head>
-<title>Login</title>
-<style>
-body{
-display:flex;
-justify-content:center;
-align-items:center;
-height:100vh;
-background:linear-gradient(135deg,#0f172a,#4c1d95,#1d4ed8);
-font-family:Arial;
-}
-.card{
-background:rgba(255,255,255,.08);
-backdrop-filter:blur(18px);
-padding:40px;
-border-radius:24px;
-width:400px;
-color:white;
-}
-input{
-width:100%;
-padding:14px;
-margin-top:15px;
-border:none;
-border-radius:12px;
-}
-button{
-width:100%;
-margin-top:20px;
-padding:14px;
-border:none;
-border-radius:12px;
-background:linear-gradient(90deg,#9333ea,#3b82f6);
-color:white;
-font-size:18px;
-}
-</style>
-</head>
 <body>
-<div class="card">
-<h1>Login</h1>
-<form>
-<input type="email" placeholder="Email">
-<input type="password" placeholder="Password">
-<button>Login</button>
-</form>
-</div>
+<h2>Login</h2>
+
+<input id="email" placeholder="Email">
+<input id="password" type="password">
+
+<button onclick="login()">Login</button>
+
+<script>
+async function login(){
+    let response = await fetch('/api/v1/login',{
+        method:'POST',
+        headers:{
+            'Content-Type':'application/json',
+            'Accept':'application/json'
+        },
+        body:JSON.stringify({
+            email:document.getElementById('email').value,
+            password:document.getElementById('password').value
+        })
+    });
+
+    let data = await response.json();
+
+    if(response.ok){
+        localStorage.setItem('token', data.token);
+        window.location='/dashboard';
+   }else{
+    console.log(data);
+    alert(JSON.stringify(data));
+   }
+}
+</script>
 </body>
 </html>

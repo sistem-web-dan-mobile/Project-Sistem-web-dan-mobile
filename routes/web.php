@@ -1,6 +1,8 @@
+<?php
+
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', fn() => view('home'));
-Route::get('/register', fn() => view('register'));
-Route::get('/login', fn() => view('login'));
-Route::get('/dashboard', fn() => view('dashboard'));
+Route::view('/', 'home');
+Route::view('/login', 'login');
+Route::view('/register', 'register');
+Route::view('/dashboard', 'dashboard');

@@ -8,7 +8,8 @@ use Illuminate\Support\Facades\Hash;
 
 use App\Contracts\AuthContract;
 
-class AuthService implements AuthContract{
+class AuthService implements AuthContract
+{
     public function register(array $data)
     {
         return User::create([
@@ -36,7 +37,11 @@ class AuthService implements AuthContract{
 
     public function logout()
     {
-        Auth::user()->currentAccessToken()->delete();
+        $user = Auth::user();
+
+        if ($user && $user->currentAccessToken()) {
+            $user->currentAccessToken()->delete();
+        }
 
         return true;
     }
