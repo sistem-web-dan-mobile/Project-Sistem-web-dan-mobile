@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Login</title>
+<style>
+body{
+display:flex;
+justify-content:center;
+align-items:center;
+height:100vh;
+background:linear-gradient(135deg,#0f172a,#4c1d95,#1d4ed8);
+font-family:Arial;
+}
+.card{
+background:rgba(255,255,255,.08);
+backdrop-filter:blur(18px);
+padding:40px;
+border-radius:24px;
+width:400px;
+color:white;
+}
+input{
+width:100%;
+padding:14px;
+margin-top:15px;
+border:none;
+border-radius:12px;
+}
+button{
+width:100%;
+margin-top:20px;
+padding:14px;
+border:none;
+border-radius:12px;
+background:linear-gradient(90deg,#9333ea,#3b82f6);
+color:white;
+font-size:18px;
+}
+</style>
+</head>
+<body>
+<div class="card">
+<h1>Login</h1>
+<form>
+<input type="email" placeholder="Email">
+<input type="password" placeholder="Password">
+<button>Login</button>
+</form>
+</div>
+</body>
+</html>

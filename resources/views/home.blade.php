@@ -1,162 +1,72 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MovieHub API</title>
-
+    <title>MovieHub</title>
     <style>
-        *{
-            margin:0;
-            padding:0;
-            box-sizing:border-box;
-            font-family: Arial, sans-serif;
-        }
-
+        *{margin:0;padding:0;box-sizing:border-box;font-family:Arial}
         body{
             min-height:100vh;
-            background: linear-gradient(135deg,#6a11cb,#2575fc,#ff4ecd);
+            background:
+            radial-gradient(circle at top left,#7c3aed,#111827 40%),
+            radial-gradient(circle at bottom right,#2563eb,#0f172a 40%);
+            color:white;
+        }
+        nav{
             display:flex;
+            justify-content:space-between;
+            padding:25px 60px;
+        }
+        .logo{
+            font-size:32px;
+            font-weight:bold;
+        }
+        .btn{
+            text-decoration:none;
+            padding:12px 24px;
+            border-radius:14px;
+            background:linear-gradient(90deg,#9333ea,#3b82f6);
+            color:white;
+            margin-left:10px;
+            box-shadow:0 0 25px rgba(139,92,246,.4);
+        }
+        .hero{
+            display:flex;
+            flex-direction:column;
             justify-content:center;
             align-items:center;
-            padding:40px;
-        }
-
-        .container{
-            width:100%;
-            max-width:1100px;
-        }
-
-        .card{
-            background: rgba(255,255,255,0.15);
-            backdrop-filter: blur(18px);
-            border:1px solid rgba(255,255,255,0.2);
-            border-radius:28px;
-            padding:50px;
-            color:white;
-            box-shadow:0 20px 40px rgba(0,0,0,0.25);
-        }
-
-        h1{
-            font-size:56px;
-            margin-bottom:10px;
-        }
-
-        .subtitle{
-            font-size:20px;
-            opacity:0.9;
-            margin-bottom:40px;
-        }
-
-        .features{
-            display:grid;
-            grid-template-columns: repeat(auto-fit,minmax(250px,1fr));
-            gap:20px;
-            margin-bottom:40px;
-        }
-
-        .feature-box{
-            background: rgba(255,255,255,0.12);
-            padding:25px;
-            border-radius:20px;
-            transition:0.3s;
-        }
-
-        .feature-box:hover{
-            transform:translateY(-5px);
-            background: rgba(255,255,255,0.2);
-        }
-
-        .feature-box h3{
-            margin-bottom:10px;
-            font-size:22px;
-        }
-
-        .endpoint{
-            background:#0f172a;
-            color:#38bdf8;
-            padding:14px 18px;
-            border-radius:12px;
-            margin-top:12px;
-            font-family: monospace;
-            overflow:auto;
-        }
-
-        .footer{
-            margin-top:40px;
+            height:80vh;
             text-align:center;
-            opacity:0.8;
         }
-
-        .btn{
-            display:inline-block;
-            margin-top:25px;
-            padding:14px 28px;
-            border-radius:999px;
-            background:white;
-            color:#6a11cb;
-            text-decoration:none;
-            font-weight:bold;
-            transition:0.3s;
+        h1{
+            font-size:70px;
+            margin-bottom:20px;
         }
-
-        .btn:hover{
-            transform:scale(1.05);
+        p{
+            font-size:22px;
+            opacity:.8;
+            max-width:700px;
         }
-
-        @media(max-width:768px){
-            h1{
-                font-size:38px;
-            }
-
-            .card{
-                padding:30px;
-            }
+        .card{
+            margin-top:40px;
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <div class="card">
-            <h1>🎬 MovieHub API</h1>
-            <p class="subtitle">
-                Laravel REST API untuk pencarian film, detail film, dan favorite list menggunakan OMDB API.
-            </p>
-
-            <div class="features">
-                <div class="feature-box">
-                    <h3>🔍 Search Movie</h3>
-                    <p>Cari film berdasarkan judul.</p>
-                    <div class="endpoint">
-                        GET /api/v1/movies/search?title=Batman
-                    </div>
-                </div>
-
-                <div class="feature-box">
-                    <h3>🎞 Movie Detail</h3>
-                    <p>Lihat detail lengkap film.</p>
-                    <div class="endpoint">
-                        GET /api/v1/movies/{imdbID}
-                    </div>
-                </div>
-
-                <div class="feature-box">
-                    <h3>❤️ Favorites</h3>
-                    <p>Simpan film favorit user.</p>
-                    <div class="endpoint">
-                        POST /api/v1/favorites
-                    </div>
-                </div>
-            </div>
-
-            <a href="/api/v1/movies/search?title=Batman" class="btn">
-                Try API
-            </a>
-
-            <div class="footer">
-                Built with Laravel • Render Deployment • OMDB API
-            </div>
-        </div>
+<nav>
+    <div class="logo">🎬 MovieHub</div>
+    <div>
+        <a href="/login" class="btn">Login</a>
+        <a href="/register" class="btn">Register</a>
     </div>
+</nav>
+
+<section class="hero">
+    <h1>Discover Movies Instantly</h1>
+    <p>Search millions of movies, explore details, and save your favorites in one beautiful platform.</p>
+
+    <div class="card">
+        <a href="/register" class="btn">Get Started</a>
+    </div>
+</section>
 </body>
 </html>
